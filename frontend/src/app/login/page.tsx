@@ -50,7 +50,7 @@ export default function LoginForm() {
               id="password"
               name="password"
               type="password"
-              placeholder="******************"
+              placeholder="******"
             />
             <p className="text-red-500 text-xs italic">Please choose a password.</p>
           </div>

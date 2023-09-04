@@ -1,4 +1,6 @@
-nestJS/yarn.lock
-nestJS/node_modules
+backend/yarn.lock
+backend/node_modules
+frontend/package-lock.json
+frontend/node_modules
 nestJS/dist
 .env

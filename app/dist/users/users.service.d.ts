@@ -1,15 +1,15 @@
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { DatabaseService } from 'src/database/database.service';
-import { QueryResult } from 'pg';
+import { User } from './entities/user.entity';
 export declare class UsersService {
-    private readonly dbService;
-    constructor(dbService: DatabaseService);
-    create(createUserDto: CreateUserDto): string;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updateUserDto: UpdateUserDto): string;
-    remove(id: number): string;
-    findAllUsers(): Promise<QueryResult>;
-    createUser(createUserDto: CreateUserDto): Promise<QueryResult>;
+    private readonly userRepository;
+    constructor(userRepository: Repository<User>);
+    createUser(createUserDto: CreateUserDto): Promise<User>;
+    findAllUsers(): Promise<User[]>;
+    viewUser(id: number): Promise<User>;
+    updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User>;
+    removeUser(id: number): Promise<{
+        affected?: number;
+    }>;
 }

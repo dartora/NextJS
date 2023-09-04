@@ -8,41 +8,53 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
-const database_service_1 = require("../database/database.service");
-let UsersService = exports.UsersService = class UsersService {
-    constructor(dbService) {
-        this.dbService = dbService;
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
+const user_entity_1 = require("./entities/user.entity");
+let UsersService = class UsersService {
+    constructor(userRepository) {
+        this.userRepository = userRepository;
     }
-    create(createUserDto) {
-        return 'This action adds a new user';
+    createUser(createUserDto) {
+        const user = new user_entity_1.User();
+        user.name = createUserDto.name;
+        user.age = createUserDto.age;
+        user.email = createUserDto.email;
+        user.username = createUserDto.username;
+        user.password = createUserDto.password;
+        user.gender = createUserDto.gender;
+        return this.userRepository.save(user);
     }
-    findAll() {
-        return `This action returns all users`;
+    findAllUsers() {
+        return this.userRepository.find();
     }
-    findOne(id) {
-        return `This action returns a #${id} user`;
+    viewUser(id) {
+        return this.userRepository.findOneBy({ id });
     }
-    update(id, updateUserDto) {
-        return `This action updates a #${id} user`;
+    updateUser(id, updateUserDto) {
+        const user = new user_entity_1.User();
+        user.name = updateUserDto.name;
+        user.age = updateUserDto.age;
+        user.email = updateUserDto.email;
+        user.username = updateUserDto.username;
+        user.password = updateUserDto.password;
+        user.id = id;
+        return this.userRepository.save(user);
     }
-    remove(id) {
-        return `This action removes a #${id} user`;
-    }
-    async findAllUsers() {
-        const sql = 'SELECT * FROM users;';
-        return this.dbService.query(sql);
-    }
-    async createUser(createUserDto) {
-        const sql = 'INSERT INTO users (username, email) VALUES ($1, $2) RETURNING *;';
-        const values = [createUserDto.id, createUserDto.name];
-        return this.dbService.query(sql, values);
+    removeUser(id) {
+        return this.userRepository.delete(id);
     }
 };
+exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [database_service_1.DatabaseService])
+    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatabaseService = void 0;
 const common_1 = require("@nestjs/common");
 const pg_1 = require("pg");
-let DatabaseService = exports.DatabaseService = class DatabaseService {
+let DatabaseService = class DatabaseService {
     constructor() {
         console.log(process.env);
         this.pool = new pg_1.Pool({
@@ -36,6 +36,7 @@ let DatabaseService = exports.DatabaseService = class DatabaseService {
         }
     }
 };
+exports.DatabaseService = DatabaseService;
 exports.DatabaseService = DatabaseService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [])

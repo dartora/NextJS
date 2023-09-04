@@ -17,29 +17,27 @@ const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
-let UsersController = exports.UsersController = class UsersController {
-    constructor(usersService) {
-        this.usersService = usersService;
+let UsersController = class UsersController {
+    constructor(userService) {
+        this.userService = userService;
     }
     create(createUserDto) {
-        return this.usersService.create(createUserDto);
+        return this.userService.createUser(createUserDto);
     }
     findAll() {
-        return this.usersService.findAll();
+        return this.userService.findAllUsers();
     }
     findOne(id) {
-        return this.usersService.findOne(+id);
+        return this.userService.viewUser(+id);
     }
     update(id, updateUserDto) {
-        return this.usersService.update(+id, updateUserDto);
+        return this.userService.updateUser(+id, updateUserDto);
     }
     remove(id) {
-        return this.usersService.remove(+id);
-    }
-    createUser(createUserDto) {
-        return this.usersService.createUser(createUserDto);
+        return this.userService.removeUser(+id);
     }
 };
+exports.UsersController = UsersController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -75,13 +73,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "remove", null);
-__decorate([
-    (0, common_1.Post)('/createUser'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "createUser", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

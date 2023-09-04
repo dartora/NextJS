@@ -1,6 +1,5 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { User } from './users/entities/user.entity';
 
 @Controller()
 export class AppController {
@@ -10,6 +9,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
-
 }

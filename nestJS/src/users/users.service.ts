@@ -75,4 +75,10 @@ export class UsersService {
   removeUser(id: number): Promise<{ affected?: number }> {
     return this.userRepository.delete(id);
   }
+
+  async findOne(username: string): Promise<User> {
+    return (await this.findAllUsers()).find(
+      (user) => user.username === username,
+    );
+  }
 }

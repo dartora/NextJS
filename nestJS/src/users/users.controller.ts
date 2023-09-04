@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 /**
  * whatever the string pass in controller decorator it will be appended to
@@ -37,6 +39,7 @@ export class UsersController {
    * so the API URL will be
    * GET http://localhost:3000/user
    */
+  @UseGuards(AuthGuard)
   @Get()
   findAll() {
     return this.userService.findAllUsers();

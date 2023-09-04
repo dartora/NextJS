@@ -32,10 +32,6 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
-  /**
-   * this function is used to get all the user's list
-   * @returns promise of array of users
-   */
   findAllUsers(): Promise<User[]> {
     return this.userRepository.find();
   }

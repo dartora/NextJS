@@ -1,5 +1,6 @@
 backend/yarn.lock
 backend/node_modules
+backend/dist
 frontend/package-lock.json
 frontend/node_modules
 nestJS/dist

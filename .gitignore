@@ -5,3 +5,4 @@ frontend/package-lock.json
 frontend/node_modules
 nestJS/dist
 .env
+.vercel
